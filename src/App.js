@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { Container } from 'react-bootstrap';
+
+import Jobs from "./pages/Jobs";
+import Login from "./pages/Login";
+import Detail from "./pages/Detail";
+import Page404 from "./pages/404";
 
 function App() {
+  let [user, setUser] = useState({ isAuthenticated: true });
+
+  const ProtectedRoute = (props) => {
+    if (user.isAuthenticated === true) {
+      return <Route {...props} />;
+    } else {
+      return <Redirect to="/login" />;
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Switch>
+        <Route path="/" exact component={Jobs} />
+        <Route path="/jobs" exact component={Jobs} />
+        <Route path="/login" exact component={Login} />
+        <ProtectedRoute
+          path="/jobs/:id"
+          render={(props) => <Detail {...props} />}
+        />
+        <Route path="*" component={Page404} />
+      </Switch>
     </div>
   );
 }
