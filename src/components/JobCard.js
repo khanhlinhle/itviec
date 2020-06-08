@@ -1,6 +1,6 @@
 import React from 'react'
 import moment from "moment";
-import { Row, Col, Badge } from "react-bootstrap";
+import { Row, Col, Badge, Button, Card } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import "./JobCard.css";
 
@@ -15,44 +15,56 @@ export default function JobCard(props) {
     return (
         <div className="job-content" onClick={() => jobSelect()}>
             <Row>
-                <Col>
+                {/* <Col>
                     <div className="jobcard-logo">
                         <img className="logo-size"src={props.job.img} />
                     </div>
-                </Col>
-                <Col xs={8}>
+                </Col> */}
+                <Col xs={10}>
                     <div className="jobcard-descriptions">
-                        <h2 className="jobcard-title">{props.job.title}</h2>
-                        <div>$ {props.job.salary}</div>
-                        <div>
-                            <ul className="benefit-list">
-                                {props.job.benefits.map(benefit => (
-                                    <li>{benefit}</li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div>
-                            {props.job.tags.map(tag => (
-                                <Badge variant="secondary" className="badge-style">
-                                    {tag}
-                                </Badge>
-                            ))}
-                        </div>
-                    </div>
-                </Col>
-                <Col>
-                    <div className="date-location-box">
-                        {props.job.isHotjob ? (
-                            <div className="hotjob-label">Hot Job</div>
-                        ) : (
-                                <div></div>
-                            )}
+                        <Card.Header>
+                            <h3>{props.job.title}</h3>
+                            <div className="jobcard-title">
+                                <div className="d-flex">
+                                    <h5>
+                                        {props.job.isHotjob ? (
+                                            <Badge className="Hotjob-style" variant="danger">Hot Job</Badge>
+                                        ) : (
+                                                <div></div>
+                                            )}
+                                    </h5>
+                                    <h5>
+                                        <Badge variant="warning">$ {props.job.salary}</Badge>
+                                    </h5>
+                                </div>
+                                <div>
+                                    <Button className="Apply-button" variant="success">Apply now</Button>
+                                </div>
+                            </div>
+                        </Card.Header>
+                        <Card.Body>
+                            <Card.Text>
+                                <div className="text-muted">Posted date: {moment(props.job.time).fromNow()}</div>
+                                <div className="jobcard-location">
+                                    <span>Location: District {props.job.district} - {props.job.city}</span>
+                                </div>
 
-                        <div className="jobcard-location">
-                            <div>{props.job.city}</div>
-                            <div>District {props.job.district}</div>
-                        </div>
-                        <div className="job-time">{moment(props.job.time).fromNow()}</div>
+                                <div>
+                                    <ul className="benefit-list">
+                                        {props.job.benefits.map(benefit => (
+                                            <li>{benefit}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </Card.Text>
+                            <h5>
+                                {props.job.tags.map(tag => (
+                                    <Badge variant="dark" className="badge-style">
+                                        {tag}
+                                    </Badge>
+                                ))}
+                            </h5>
+                        </Card.Body>
                     </div>
                 </Col>
             </Row>

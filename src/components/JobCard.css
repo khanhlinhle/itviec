@@ -1,4 +1,34 @@
-.logo-size {
-    width: 150px;
-    height: 100px;
+.Apply-button {
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.badge-style {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.jobcard-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Hotjob-style {
+    margin-right: 10px;
+}
+
+.title {
+    letter-spacing: 2px;
+    font-size: 50px;
+    border-bottom: 5px solid black;
+}
+
+.Alerts-button {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.small-text {
+    font-style: italic;
 }

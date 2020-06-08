@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { Container } from 'react-bootstrap';
 
 import Jobs from "./pages/Jobs";
 import Login from "./pages/Login";
