@@ -9,7 +9,7 @@ import Detail from "./pages/Detail";
 import Page404 from "./pages/404";
 
 function App() {
-  let [user, setUser] = useState({ isAuthenticated: true });
+  let [user, setUser] = useState({ isAuthenticated: false });
 
   const ProtectedRoute = (props) => {
     if (user.isAuthenticated === true) {
