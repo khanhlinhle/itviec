@@ -4,7 +4,6 @@ const initialstate = {
     user: { 
         email:"", 
         isAuthenticated: false }, 
-    }
 }
 
 function reducer(state = initialstate, action) {
