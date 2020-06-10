@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container } from "react-bootstrap";
+import "./404.css"
 
 export default function Page404() {
 

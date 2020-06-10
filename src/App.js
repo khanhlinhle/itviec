@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Switch, Route, Redirect } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 import Jobs from "./pages/Jobs";
-import Login from "./pages/Login";
+import Login from "./pages/Login/Login";
 import Detail from "./pages/Detail";
-import Page404 from "./pages/404";
+import Page404 from "./pages/404/404";
 
 function App() {
-  let [user, setUser] = useState({ isAuthenticated: false });
+  // let [user, setUser] = useState({ isAuthenticated: false });
+
+  let user = useSelector(state => state.user);
 
   const ProtectedRoute = (props) => {
     if (user.isAuthenticated === true) {

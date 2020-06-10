@@ -1,13 +1,14 @@
 import React from 'react'
 import moment from "moment";
 import { Row, Col, Badge, Button, Card } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import "./JobCard.css";
+import { useSelector } from 'react-redux';
 
 export default function JobCard(props) {
 
     let history = useHistory();
-
+    const user = useSelector(state => state.user);
     const jobSelect = () => {
         history.push(`/jobs/${props.job.id}`);
     };
@@ -15,11 +16,6 @@ export default function JobCard(props) {
     return (
         <div className="job-content" onClick={() => jobSelect()}>
             <Row>
-                {/* <Col>
-                    <div className="jobcard-logo">
-                        <img className="logo-size"src={props.job.img} />
-                    </div>
-                </Col> */}
                 <Col xs={10}>
                     <div className="jobcard-descriptions">
                         <Card.Header>
@@ -34,7 +30,14 @@ export default function JobCard(props) {
                                             )}
                                     </h5>
                                     <h5>
-                                        <Badge variant="warning">$ {props.job.salary}</Badge>
+                                        {
+                                            user.isAuthenticated === true ?
+                                                <Badge variant="warning">$ {props.job.salary}</Badge> :
+                                                <Badge variant="light">$&nbsp;
+                                                    <Link to="/login">Sign in to view</Link>
+                                                </Badge>
+                                        }
+
                                     </h5>
                                 </div>
                                 <div>
@@ -48,7 +51,6 @@ export default function JobCard(props) {
                                 <div className="jobcard-location">
                                     <span>Location: District {props.job.district} - {props.job.city}</span>
                                 </div>
-
                                 <div>
                                     <ul className="benefit-list">
                                         {props.job.benefits.map(benefit => (
