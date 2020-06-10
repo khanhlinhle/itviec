@@ -4,11 +4,6 @@ const initialstate = {
     user: { 
         email:"", 
         isAuthenticated: false }, 
-    formError: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: ""
     }
 }
 
